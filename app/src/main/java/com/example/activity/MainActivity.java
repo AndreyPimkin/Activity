@@ -6,6 +6,7 @@ import android.widget.TextView;
 import android.util.Log;
 import android.widget.Toast;
 
+
 public class MainActivity extends Activity {
     public static final String TAG = "StartActivity";
     private Integer count = 5;
@@ -15,15 +16,19 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         Toast.makeText(this, "onCreate()", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onCreate");
+        TextView counterView = findViewById(R.id.five);
+        counterView.setText(count.toString());
+
     }
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        Toast.makeText(this, "onRestore", Toast.LENGTH_LONG).show();
         if (savedInstanceState != null &&
                 savedInstanceState.containsKey("count")) {
             count = savedInstanceState.getInt("count");
         }
-        Log.d(TAG, "onRestoreInstanceState");
+        Log.d(TAG, "onRestore");
 
     }
     @Override
@@ -31,23 +36,27 @@ public class MainActivity extends Activity {
         super.onRestart();
         Toast.makeText(this, "onRestart", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onRestart");
+
     }
     @Override
     public void onStart(){
         super.onStart();
         Toast.makeText(this, "onStart", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onStart");
+
     }
     @Override
     public void onResume(){
         super.onResume();
         Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onResume");
+
     }
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt("count", count);
+        Toast.makeText(this, "onSave", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onSaveInstanceState");
     }
     @Override
